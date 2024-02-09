@@ -1,7 +1,13 @@
 name: main workflow
-on: push
+on: workflow_dispatch
 jobs:
-    main:
+    development:
         runs-on: self-hosted
         steps:
-            - run: echo test
+            - name: checkout
+              uses: actions/checkout@v4 
+            - name: SonaQube
+              uses: SonarSource/sonarqube-scan-action@v2.0.1
+              env:
+                  SONAR_TOKEN: ${{secrets.SONAR_TOKEN}}
+                  SONAR_HOST_URL:  ${{secrets.SONAR_HOST_URL}}
