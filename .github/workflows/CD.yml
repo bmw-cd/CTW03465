@@ -1,5 +1,11 @@
 name: CD Workflow
-on: workflow_dispatch
+on:
+  workflow_run:
+    workflows: ["CI Workflow"]
+    branches: [main]
+    types: 
+      - completed
+
 jobs:
     development:
         environment: dev

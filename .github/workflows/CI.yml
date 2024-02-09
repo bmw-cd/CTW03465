@@ -4,6 +4,8 @@ jobs:
     development:
         environment: dev
         runs-on: self-hosted
+        outputs:
+          image_name: ${{vars.APP_NAME}}
         steps:
             #Checking out the repo 
             - name: checkout
@@ -39,10 +41,6 @@ jobs:
               push: false
               tags: ${{secrets.DOCKERHUB_USERNAME}}/${{vars.APP_NAME}}:v1 
               outputs: type=docker,dest=/tmp/myimage.tar
-             
-             
-            #- name: Creating the image
-            # run : docker save -o image.tar ${{secrets.DOCKERHUB_USERNAME}}/${{vars.APP_NAME}}:v1
 
             #Saving the image to an argiact
             - name: Archive production artifacts
@@ -50,4 +48,6 @@ jobs:
               with: 
                 name: myimage
                 path: /tmp/myimage.tar
+            
+            - run: echo "Generated Image with name ${{secrets.DOCKERHUB_USERNAME}}/${{vars.APP_NAME}}:v1"
             
