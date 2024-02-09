@@ -1,0 +1,7 @@
+name: main workflow
+on: push
+jobs:
+    main:
+        runs-on: self-hosted
+        steps:
+            - run: echo test
