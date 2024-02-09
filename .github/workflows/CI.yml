@@ -32,15 +32,15 @@ jobs:
              with:
               push: false
               tags: ${{secrets.DOCKERHUB_USERNAME}}/${{vars.APP_NAME}}:v1 
-              outputs: type=docker,dest=/tmp/myimage.tar
-            
-
+             
+            - name: Creating the image
+              run : docker save -o image.tar ${{vars.APP_NAME}}:v1 
 
             #Saving the image to an argiact
-            #- name: Archive production artifacts
-            #  uses: actions/upload-artifact@v2
-            #  with: 
-            #    name: myimage
-            #    path: /tmp/myimage.tar
-            #-
-            #  run: echo ${{steps.bp.outputs.imageid}}
+            - name: Archive production artifacts
+              uses: actions/upload-artifact@v2
+              with: 
+                name: image
+                path: /tmp/image.tar
+            -
+              run: echo ${{steps.bp.outputs.imageid}}
