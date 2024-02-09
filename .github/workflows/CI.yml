@@ -8,10 +8,10 @@ jobs:
             #Checking out the repo 
             - name: checkout
               uses: actions/checkout@v4 
-            #- name : testing the app
-            #  run: | 
-            #    npm install
-            #    npm test
+            - name : testing the app
+              run: | 
+                npm install
+                npm test
             #Using sonarQube
             #- name: SonaQube
             #  uses: SonarSource/sonarqube-scan-action@v2.0.1
@@ -32,15 +32,14 @@ jobs:
              with:
               push: false
               tags: ${{secrets.DOCKERHUB_USERNAME}}/${{vars.APP_NAME}}:v1 
-              outputs: type=docker,dest=/tmp/myimage.tar
              
 
 
             #Saving the image to an argiact
-            - name: Archive production artifacts
-              uses: actions/upload-artifact@v2
-              with: 
-                name: myimage
-                path: /tmp/myimage.tar
-            -
-              run: echo ${{steps.bp.outputs.imageid}}
+            #- name: Archive production artifacts
+            #  uses: actions/upload-artifact@v2
+            #  with: 
+            #    name: myimage
+            #    path: /tmp/myimage.tar
+            #-
+            #  run: echo ${{steps.bp.outputs.imageid}}
