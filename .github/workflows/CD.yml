@@ -1,5 +1,6 @@
 name: CD Workflow
 on:
+  workflow_dispatch:
   workflow_run:
     workflows: ["CI Workflow"]
     branches: [main]
@@ -13,7 +14,7 @@ jobs:
         steps:
             #Checking out the repo 
             - run: | 
-                docker image load /tmp/myimage
+                docker image load --input /tmp/myimage
                 docker ps 
                 curl http://localhost:3000/api/latest-releases
           
