@@ -32,7 +32,8 @@ jobs:
              with:
               push: false
               tags: ${{secrets.DOCKERHUB_USERNAME}}/${{vars.APP_NAME}}:v1 
-             
+              outputs: type=docker,dest=/tmp/myimage.tar
+            
 
 
             #Saving the image to an argiact
