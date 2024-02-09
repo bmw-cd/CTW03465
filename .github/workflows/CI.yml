@@ -34,7 +34,7 @@ jobs:
               tags: ${{secrets.DOCKERHUB_USERNAME}}/${{vars.APP_NAME}}:v1 
              
             - name: Creating the image
-              run : docker save -o image.tar ${{vars.APP_NAME}}:v1 
+              run : docker save -o image.tar ${{secrets.DOCKERHUB_USERNAME}}/${{vars.APP_NAME}}:v1
 
             #Saving the image to an argiact
             - name: Archive production artifacts
