@@ -17,7 +17,7 @@ jobs:
                 docker image load --input /tmp/myimage.tar
                 docker run --name=app -dp 3000:3000 duartedias471/ci_test:v1
                 docker ps 
-                curl `docker inspect --format='{{.NetworkSettings.IPAddress}}' epic_diffie`:3000/api/latest-releases
+                curl `docker inspect --format='{{.NetworkSettings.IPAddress}}' app`:3000/api/latest-releases
                 docker stop app
 
             
