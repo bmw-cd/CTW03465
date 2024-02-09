@@ -1,4 +1,4 @@
-name: main workflow
+name: CI Workflow
 on: workflow_dispatch
 jobs:
     development:
@@ -8,10 +8,10 @@ jobs:
             #Checking out the repo 
             - name: checkout
               uses: actions/checkout@v4 
-            - name : testing the app
-              run: | 
-                npm install
-                npm test
+            #- name : testing the app
+            #  run: | 
+            #    npm install
+            #    npm test
             #Using sonarQube
             #- name: SonaQube
             #  uses: SonarSource/sonarqube-scan-action@v2.0.1

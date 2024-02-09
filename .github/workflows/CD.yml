@@ -1,4 +1,4 @@
-name: main workflow
+name: CD Workflow
 on: workflow_dispatch
 jobs:
     development:
