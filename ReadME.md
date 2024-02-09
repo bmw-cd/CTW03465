@@ -7,13 +7,13 @@ Configure your repository as follow:
 - [x]   Create an additional branch - dev
 - [x]   Create 3 environments: dev, test, prod
 - [x]   Protect your main branch to only accept push from a Pull Request
-- [ ]   Configure a required status check to be passed before merge to main - use your test Job
-- [ ]   Configure a self-hosted runner in your ~~WSL 2 (Linux)~~ Real Linux Installation
+- [x]   Configure a required status check to be passed before merge to main - use your test Job
+- [x]   Configure a self-hosted runner in your ~~WSL 2 (Linux)~~ Real Linux Installation
 
 1. Using your Node.js application from classes, create a pipeline named CI to:
 
-- [ ]   Test your app - npm test
-- [ ]   Analyse you app code with SonarQube
+- [x]   Test your app - npm test
+- [x]   Analyse you app code with SonarQube
 - [ ]   Build a tagged (v1) docker image with your app and store it as an artifact
 - [ ]   Output the image name in your pipeline logs
 - [ ]   Output the image name using Job Outputs

@@ -1,0 +1,9 @@
+name: main workflow
+on: workflow_dispatch
+jobs:
+    development:
+        environment: dev
+        runs-on: self-hosted
+        steps:
+            #Checking out the repo 
+            - run: echo test

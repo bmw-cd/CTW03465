@@ -1,0 +1,46 @@
+name: main workflow
+on: workflow_dispatch
+jobs:
+    development:
+        environment: dev
+        runs-on: self-hosted
+        steps:
+            #Checking out the repo 
+            - name: checkout
+              uses: actions/checkout@v4 
+            - name : testing the app
+              run: | 
+                npm install
+                npm test
+            #Using sonarQube
+            #- name: SonaQube
+            #  uses: SonarSource/sonarqube-scan-action@v2.0.1
+            #  env:
+            #      SONAR_TOKEN: ${{secrets.SONAR_TOKEN}}
+            #      SONAR_HOST_URL:  ${{secrets.SONAR_HOST_URL}}
+
+            -
+              name: Login to Docker Hub
+              uses: docker/login-action@v3
+              with:
+                username: ${{ secrets.DOCKERHUB_USERNAME }}
+                password: ${{ secrets.DOCKERHUB_TOKEN }}
+            -
+             name: Build and push
+             id: bp
+             uses: docker/build-push-action@v5
+             with:
+              push: false
+              tags: ${{secrets.DOCKERHUB_USERNAME}}/${{github.event.repository.name}}:v1 
+              outputs: type=docker,dest=/tmp/myimage.tar
+             
+
+
+            #Saving the image to an argiact
+            - name: Archive production artifacts
+              uses: actions/upload-artifact@v2
+              with: 
+                name: myimage
+                path: /tmp/myimage.tar
+            -
+              run: echo ${{steps.bp.outputs.imageid}}
