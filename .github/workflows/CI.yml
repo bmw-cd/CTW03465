@@ -31,7 +31,7 @@ jobs:
              uses: docker/build-push-action@v5
              with:
               push: false
-              tags: ${{secrets.DOCKERHUB_USERNAME}}/${{github.event.repository.name}}:v1 
+              tags: ${{secrets.DOCKERHUB_USERNAME}}/${{vars.APP_NAME}}:v1 
               outputs: type=docker,dest=/tmp/myimage.tar
              
 
